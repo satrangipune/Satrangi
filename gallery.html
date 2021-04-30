@@ -72,25 +72,90 @@
       </div>
     </section>
 
+
 		<section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb">
     	<div class="container">
     		<div class="row d-flex">
     			<div class="col-md-4 col-lg-4 pl-lg-4 py-4 d-flex justify-content-center zoom">
-	    				<img id="myImg" src="images/people/placeholder.jpg" alt="Snow" style="width:100%;max-width:900px">
+	    				<img src="images/people/placeholder.jpg" onclick="openModal();currentSlide(1)" style="width:100%;max-width:900px">
 	        </div>
           <div class="col-md-4 col-lg-4 pl-lg-4 py-4 d-flex justify-content-center zoom">
-	    				<img id="myImg" src="images/people/placeholder.jpg" alt="Snow" style="width:100%;max-width:900px">
+	    				<img src="images/people/placeholder.jpg" onclick="openModal();currentSlide(2)" style="width:100%;max-width:900px">
 	        </div>
           <div class="col-md-4 col-lg-4 pl-lg-4 py-4 d-flex justify-content-center zoom">
-	    				<img id="myImg" src="images/people/placeholder.jpg" alt="Snow" style="width:100%;max-width:900px">
+	    				<img src="images/people/placeholder.jpg" onclick="openModal();currentSlide(3)" style="width:100%;max-width:900px">
 	        </div>
           <!-- Keep adding as needed -->
           <!-- <div class="col-md-4 col-lg-4 pl-lg-4 py-4 d-flex justify-content-center zoom">
-	    				<img id="myImg" src="images/people/placeholder.jpg" alt="Snow" style="width:100%;max-width:900px">
+	    				<img src="images/people/placeholder.jpg" onclick="openModal();currentSlide(3)" style="width:100%;max-width:900px">
 	        </div> -->
+          <div id="modalgallery" class="modal">
+          <span class="close cursor" onclick="closeModal()">&times;</span>
+          <div class="modal-content">
+            <div class="modalslide">
+              <img class="fullimage" alt="Enter Caption 1" src="images/people/placeholder.jpg" style="width:100%">
+            </div>
+            <div class="modalslide">
+              <img class="fullimage" alt="Enter Caption 2" src="images/people/placeholder.jpg" style="width:100%">
+            </div>
+            <div class="modalslide">
+              <img class="fullimage" alt="Enter Caption 3" src="images/people/placeholder.jpg" style="width:100%">
+            </div>
+            <!-- Keep adding as needed -->
+            <!-- <div class="modalslide">
+              <img class="fullimage" alt="Enter Caption 3" src="images/people/placeholder.jpg" style="width:100%">
+            </div> -->
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <!-- Caption text -->
+            <div class="caption-container">
+              <p id="caption"></p>
+            </div>
+          </div>
+          </div>
         </div>
     	</div>
+
     </section>
+
+    <script>
+    // Open the Modal
+    function openModal() {
+      document.getElementById("modalgallery").style.display = "block";
+    }
+    // Close the Modal
+    function closeModal() {
+      document.getElementById("modalgallery").style.display = "none";
+    }
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("modalslide");
+      var dots = document.getElementsByClassName("fullimage");
+      var captionText = document.getElementById("caption");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
+    }
+    </script>
 
     <section class="ftco-section ftco-causes">
       <div class="container">
